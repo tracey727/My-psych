@@ -8,7 +8,7 @@
   <title>Genevieve Safe Connection</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles-v4.css?v=4" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -17,7 +17,7 @@
     <div class="brand-mark" aria-hidden="true">G</div>
     <div>
       <p class="eyebrow">GENEVIEVE APP™</p>
-      <h1>Safe Connection</h1>
+      <h1>Safe Connection</h1><small class="build-label">Check-in repair 4</small>
     </div>
     <button id="quickStopHeader" class="icon-button danger-outline" aria-label="Stop and ground">STOP</button>
   </header>
@@ -87,9 +87,10 @@
         <fieldset>
           <legend>Choose your colour</legend>
           <div class="traffic-grid">
-            <label class="traffic green"><input type="radio" name="colour" value="green" required><span><strong>Green</strong><small>Present enough for one small skill</small></span></label>
+            <label class="traffic green"><input type="radio" name="colour" value="green"><span><strong>Green</strong><small>Present enough for one small skill</small></span></label>
             <label class="traffic amber"><input type="radio" name="colour" value="amber"><span><strong>Amber</strong><small>Strained, uncertain or easily overwhelmed</small></span></label>
             <label class="traffic red"><input type="radio" name="colour" value="red"><span><strong>Red</strong><small>Unsafe, disconnected or unable to choose safely</small></span></label>
+            <label class="traffic unsure"><input type="radio" name="colour" value="unsure"><span><strong>Not sure</strong><small>I cannot name my state yet</small></span></label>
           </div>
         </fieldset>
 
@@ -104,7 +105,8 @@
         <label>One boundary I need respected<textarea name="boundary" rows="2" placeholder="Please do not touch me without asking."></textarea></label>
 
         <div id="checkinSafetyMessage" class="inline-alert hidden" role="alert"></div>
-        <button class="button primary full" type="submit">Save my check-in</button>
+        <div id="checkinSaveStatus" class="inline-success hidden" role="status" aria-live="polite"></div>
+        <button id="saveCheckinButton" class="button primary full" type="button">Save my check-in</button>
       </form>
     </section>
 
@@ -342,6 +344,6 @@
   </dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js" defer></script>
+  <script src="app-v4.js?v=4"></script>
 </body>
 </html>

@@ -1,3 +1,9 @@
+# CHECK-IN STORAGE REPAIR 4
+
+This build uses new JavaScript and stylesheet filenames, clears old service-worker caches, verifies each saved entry, and keeps a visible Saved confirmation on the check-in screen.
+
+**You should see “Check-in repair 4” under the app title.** If you do not see that wording, the phone is still opening the old deployment.
+
 # GENEVIEVE Safe Connection App
 
 A private, phone-friendly progressive web app for:
@@ -44,3 +50,10 @@ Open the deployed site in Safari, tap **Share**, then **Add to Home Screen**.
 ## Important
 
 This is a self-management aid, not emergency care, diagnosis or trauma therapy. It does not require exposure or touch. Emergency links are built into the interface.
+
+## Check-in save repair (v2)
+
+- Check-ins now save even when the user cannot choose a colour; they are recorded as **Not sure**.
+- Text is automatically kept as a local draft while it is being typed.
+- After saving, the app opens Progress and shows all written answers under **See everything I wrote**.
+- The service-worker cache version was changed so deployed phones receive the repaired JavaScript.

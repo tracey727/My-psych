@@ -2,7 +2,7 @@
   "name": "Genevieve Safe Connection",
   "short_name": "Safe Connection",
   "description": "Private support for body care, grounding, boundaries, touch and relationships.",
-  "start_url": "./",
+  "start_url": "./?build=4",
   "display": "standalone",
   "background_color": "#fff8fb",
   "theme_color": "#f6dce7",
