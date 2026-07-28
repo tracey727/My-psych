@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f6dce7" />
+  <meta name="description" content="A private, trauma-aware self-guided support app for body care, boundaries, touch and relationships." />
+  <title>Genevieve Safe Connection</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="brand-mark" aria-hidden="true">G</div>
+    <div>
+      <p class="eyebrow">GENEVIEVE APP™</p>
+      <h1>Safe Connection</h1>
+    </div>
+    <button id="quickStopHeader" class="icon-button danger-outline" aria-label="Stop and ground">STOP</button>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section id="home" class="view active" aria-labelledby="home-title">
+      <div class="welcome-card card">
+        <p class="eyebrow">PRIVATE ON THIS DEVICE</p>
+        <h2 id="home-title">Hello, <span data-user-name>Tracey</span></h2>
+        <p>This app helps you stay present, protect your body and practise connection without forcing touch or trust.</p>
+        <div id="todayState" class="status-banner neutral">No check-in saved today</div>
+      </div>
+
+      <div class="safety-card card">
+        <div>
+          <p class="eyebrow">IMMEDIATE SAFETY</p>
+          <h3>Are you in danger or likely to hurt yourself?</h3>
+          <p>Use emergency support instead of an exercise.</p>
+        </div>
+        <div class="button-row">
+          <a class="button danger" href="tel:000">Call 000</a>
+          <a class="button secondary" href="tel:+61131114">Lifeline 13 11 14</a>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <h2>What do you need now?</h2>
+      </div>
+      <div class="action-grid">
+        <button class="action-card" data-go="checkin">
+          <span class="action-icon">●</span>
+          <strong>Check in</strong>
+          <small>Green, amber or red</small>
+        </button>
+        <button class="action-card" data-go="cream">
+          <span class="action-icon">◒</span>
+          <strong>Put cream on</strong>
+          <small>Stay present, one area at a time</small>
+        </button>
+        <button class="action-card" data-go="grounding">
+          <span class="action-icon">◎</span>
+          <strong>Ground me</strong>
+          <small>Come back to now</small>
+        </button>
+        <button class="action-card" data-go="connection">
+          <span class="action-icon">◇</span>
+          <strong>Connection work</strong>
+          <small>Boundaries, trust and relationships</small>
+        </button>
+      </div>
+
+      <div class="card gentle-step">
+        <p class="eyebrow">TODAY'S GENTLE STEP</p>
+        <h3 id="gentleStepTitle">Choose, do not force</h3>
+        <p id="gentleStepText">Notice one body signal and ask, “What might I need?” You do not need to solve it.</p>
+        <button class="button ghost" id="newGentleStep">Give me another</button>
+      </div>
+    </section>
+
+    <section id="checkin" class="view" aria-labelledby="checkin-title">
+      <div class="section-heading with-back">
+        <button class="back-button" data-go="home" aria-label="Back to home">‹</button>
+        <div><p class="eyebrow">DAILY SAFETY</p><h2 id="checkin-title">How are you right now?</h2></div>
+      </div>
+
+      <form id="checkinForm" class="card form-card">
+        <fieldset>
+          <legend>Choose your colour</legend>
+          <div class="traffic-grid">
+            <label class="traffic green"><input type="radio" name="colour" value="green" required><span><strong>Green</strong><small>Present enough for one small skill</small></span></label>
+            <label class="traffic amber"><input type="radio" name="colour" value="amber"><span><strong>Amber</strong><small>Strained, uncertain or easily overwhelmed</small></span></label>
+            <label class="traffic red"><input type="radio" name="colour" value="red"><span><strong>Red</strong><small>Unsafe, disconnected or unable to choose safely</small></span></label>
+          </div>
+        </fieldset>
+
+        <label>How safe do you feel? <output id="safetyOutput">5</output>/10
+          <input id="safetyLevel" name="safety" type="range" min="0" max="10" value="5" />
+        </label>
+        <label>My body feels<textarea name="body" rows="2" placeholder="Tight, heavy, numb, shaky, calm…"></textarea></label>
+        <label>The strongest feeling is<textarea name="feeling" rows="2" placeholder="Angry, scared, hurt, blank, steady…"></textarea></label>
+        <label>Being near people today feels<textarea name="people" rows="2" placeholder="Okay, too close, uncertain, impossible…"></textarea></label>
+        <label>Touch today feels<textarea name="touch" rows="2" placeholder="Okay on arms, no face, not sure…"></textarea></label>
+        <label>What I most need is<textarea name="need" rows="2" placeholder="Space, reassurance, sleep, food, clarity…"></textarea></label>
+        <label>One boundary I need respected<textarea name="boundary" rows="2" placeholder="Please do not touch me without asking."></textarea></label>
+
+        <div id="checkinSafetyMessage" class="inline-alert hidden" role="alert"></div>
+        <button class="button primary full" type="submit">Save my check-in</button>
+      </form>
+    </section>
+
+    <section id="cream" class="view" aria-labelledby="cream-title">
+      <div class="section-heading with-back">
+        <button class="back-button" data-go="home" aria-label="Back to home">‹</button>
+        <div><p class="eyebrow">BODY CARE</p><h2 id="cream-title">Cream without leaving yourself</h2></div>
+      </div>
+
+      <div id="creamIntro" class="card">
+        <div class="personal-map">
+          <div class="map-row easier"><span>Arms</span><strong>More manageable</strong></div>
+          <div class="map-row easier"><span>Legs</span><strong>More manageable</strong></div>
+          <div class="map-row difficult"><span>Torso</span><strong>Go slowly — optional</strong></div>
+          <div class="map-row difficult"><span>Face</span><strong>Go slowly — optional</strong></div>
+        </div>
+        <p class="support-note">The aim is not to finish every area. The aim is to remain present and keep choice.</p>
+        <button id="prepareCream" class="button primary full">Prepare a cream session</button>
+      </div>
+
+      <form id="creamSetup" class="card form-card hidden">
+        <fieldset>
+          <legend>1. Which area are you choosing?</legend>
+          <div class="choice-grid">
+            <label><input type="radio" name="area" value="arms" required><span>Arms</span></label>
+            <label><input type="radio" name="area" value="legs"><span>Legs</span></label>
+            <label><input type="radio" name="area" value="torso"><span>Torso</span></label>
+            <label><input type="radio" name="area" value="face"><span>Face</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>2. Choose the pace</legend>
+          <div class="choice-grid three">
+            <label><input type="radio" name="pace" value="10" required><span>10 seconds</span></label>
+            <label><input type="radio" name="pace" value="20"><span>20 seconds</span></label>
+            <label><input type="radio" name="pace" value="0"><span>No timer</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>3. Choose what may help</legend>
+          <div class="check-list">
+            <label><input type="checkbox" name="supports" value="eyes" checked> Keep my eyes open</label>
+            <label><input type="checkbox" name="supports" value="feet" checked> Press my feet into the floor</label>
+            <label><input type="checkbox" name="supports" value="surface"> Keep one hand against a stable surface</label>
+            <label><input type="checkbox" name="supports" value="applicator"> Use an applicator or cloth if direct hand contact is harder</label>
+            <label><input type="checkbox" name="supports" value="mirrorOff"> Avoid the mirror</label>
+          </div>
+        </fieldset>
+        <label class="consent-check"><input type="checkbox" id="creamChoice" required> I am choosing this area. I may stop before it is finished.</label>
+        <button class="button primary full" type="submit">Start gently</button>
+      </form>
+
+      <div id="creamSession" class="card hidden" aria-live="polite">
+        <p class="eyebrow">CREAM SESSION</p>
+        <h3 id="creamAreaTitle">Chosen area</h3>
+        <div id="creamTimer" class="timer" aria-label="Session timer">READY</div>
+        <p id="creamInstruction" class="large-instruction"></p>
+        <div class="anchor-box">
+          <strong>Say this now:</strong>
+          <p id="anchorPhrase">My name is Tracey. Today is <span data-today></span>. I am here, and I am choosing what happens to my body.</p>
+        </div>
+
+        <fieldset class="dissociation-check">
+          <legend>Tap anything beginning now</legend>
+          <div class="symptom-grid">
+            <button type="button" data-symptom="far away">I feel far away</button>
+            <button type="button" data-symptom="numb">I feel numb</button>
+            <button type="button" data-symptom="blurred or unreal">Things feel unreal</button>
+            <button type="button" data-symptom="body not mine">My body feels not mine</button>
+            <button type="button" data-symptom="lost time">I lost track of time</button>
+            <button type="button" data-symptom="cannot speak">I cannot speak properly</button>
+          </div>
+        </fieldset>
+
+        <div class="session-controls">
+          <button type="button" id="presentButton" class="button secondary">I am still present</button>
+          <button type="button" id="pauseCream" class="button ghost">Pause</button>
+          <button type="button" id="stopCream" class="button danger">STOP & GROUND</button>
+          <button type="button" id="finishCream" class="button primary">Finished enough</button>
+        </div>
+      </div>
+
+      <div id="creamResult" class="card hidden">
+        <p class="eyebrow">SESSION COMPLETE</p>
+        <h3 id="creamResultTitle">You kept choice.</h3>
+        <p id="creamResultText"></p>
+        <div class="choice-grid three result-feelings">
+          <button data-after="present">I stayed present</button>
+          <button data-after="mixed">Somewhat present</button>
+          <button data-after="dissociated">I dissociated</button>
+        </div>
+        <label>What helped or made it harder?<textarea id="creamNote" rows="3"></textarea></label>
+        <button id="saveCreamResult" class="button primary full">Save session</button>
+      </div>
+    </section>
+
+    <section id="grounding" class="view" aria-labelledby="grounding-title">
+      <div class="section-heading with-back">
+        <button class="back-button" data-go="home" aria-label="Back to home">‹</button>
+        <div><p class="eyebrow">COME BACK TO NOW</p><h2 id="grounding-title">Grounding room</h2></div>
+      </div>
+
+      <div class="card grounding-card">
+        <div class="now-box">
+          <p>My name is <strong data-user-name>Tracey</strong>.</p>
+          <p>Today is <strong data-today></strong>.</p>
+          <p>The time is <strong id="currentTime"></strong>.</p>
+          <label>I am currently at<input id="currentPlace" type="text" placeholder="Home, bedroom, bathroom…" /></label>
+        </div>
+        <h3>Orient slowly</h3>
+        <div class="grounding-list">
+          <label>5 things I can see<input data-ground="see" type="text"></label>
+          <label>4 things I can feel touching me<input data-ground="feel" type="text"></label>
+          <label>3 sounds I can hear<input data-ground="hear" type="text"></label>
+          <label>2 things I can smell<input data-ground="smell" type="text"></label>
+          <label>1 thing I can taste or would like to taste<input data-ground="taste" type="text"></label>
+        </div>
+        <button id="groundingComplete" class="button primary full">I am more present now</button>
+        <button id="stillAway" class="button danger-outline full">I still feel far away</button>
+      </div>
+    </section>
+
+    <section id="connection" class="view" aria-labelledby="connection-title">
+      <div class="section-heading with-back">
+        <button class="back-button" data-go="home" aria-label="Back to home">‹</button>
+        <div><p class="eyebrow">SAFE CONNECTION PATHWAY</p><h2 id="connection-title">Relationships without losing yourself</h2></div>
+      </div>
+
+      <div class="card">
+        <p class="support-note">You do not have to date, trust, forgive or allow touch. Progress means more choice and self-trust.</p>
+        <div id="stageList" class="stage-list"></div>
+      </div>
+
+      <div class="card">
+        <p class="eyebrow">BOUNDARY SCRIPTS</p>
+        <h3>Words ready when your brain is full</h3>
+        <div id="scriptList" class="script-list"></div>
+      </div>
+
+      <div class="card">
+        <p class="eyebrow">MY TOUCH MENU</p>
+        <h3>“Maybe” never means yes</h3>
+        <div id="touchMenu" class="touch-menu"></div>
+      </div>
+
+      <div class="card">
+        <p class="eyebrow">RELATIONSHIP CIRCLES</p>
+        <div class="circle-stack">
+          <details><summary>Inner circle</summary><p>Only people who repeatedly demonstrate honesty, respect, repair and acceptance of no.</p></details>
+          <details><summary>Middle circle</summary><p>Limited information. Trust is still being tested through behaviour over time.</p></details>
+          <details><summary>Outer circle</summary><p>Acquaintances and professionals receive only information needed for their role.</p></details>
+          <details><summary>Outside my boundary</summary><p>People who coerce, shame, threaten, manipulate or repeatedly ignore boundaries.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="progress" class="view" aria-labelledby="progress-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">NO SCORES, NO FAILURE</p><h2 id="progress-title">My progress</h2></div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat card"><span id="checkinCount">0</span><small>Check-ins</small></div>
+        <div class="stat card"><span id="creamCount">0</span><small>Cream sessions</small></div>
+        <div class="stat card"><span id="stoppedCount">0</span><small>Times I respected stop</small></div>
+      </div>
+      <div class="card">
+        <h3>Recent check-ins</h3>
+        <div id="recentCheckins" class="history-list empty-state">No check-ins yet.</div>
+      </div>
+      <div class="card">
+        <h3>Recent cream sessions</h3>
+        <div id="recentCream" class="history-list empty-state">No cream sessions yet.</div>
+      </div>
+      <div class="card">
+        <h3>Private backup</h3>
+        <p>Export a copy to your device or print a summary. Nothing is automatically sent anywhere.</p>
+        <div class="button-row wrap">
+          <button id="exportData" class="button secondary">Export data</button>
+          <button id="printSummary" class="button ghost">Print summary</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="settings" class="view" aria-labelledby="settings-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">CONTROL & PRIVACY</p><h2 id="settings-title">Settings</h2></div>
+      </div>
+      <form id="settingsForm" class="card form-card">
+        <label>Your name<input id="settingName" type="text" value="Tracey"></label>
+        <label>Your usual grounding place<input id="settingPlace" type="text" placeholder="Home"></label>
+        <label>Your own anchoring phrase<textarea id="settingPhrase" rows="3" placeholder="I am here. I own my body. I can stop."></textarea></label>
+        <label class="toggle-line"><input id="lowStim" type="checkbox"> Low-stimulation mode</label>
+        <button class="button primary full" type="submit">Save settings</button>
+      </form>
+      <div class="card">
+        <h3>Privacy</h3>
+        <p>Your entries stay in this browser using local device storage. Clearing browser data or deleting the app may remove them unless you export a backup.</p>
+        <button id="wipeData" class="button danger-outline full">Delete all my app data</button>
+      </div>
+      <div class="card small-text">
+        <h3>Important limits</h3>
+        <p>This app is a self-management aid, not diagnosis, emergency care or trauma therapy. It never requires touch or exposure. Stop and seek human or emergency support if dissociation, self-harm urges or danger increases.</p>
+        <p>Grounding content is informed by Australian complex-trauma and crisis-support resources.</p>
+        <div class="source-links">
+          <a href="https://blueknot.org.au/survivors/survivor-self-care/grounding/" target="_blank" rel="noopener">Blue Knot grounding</a>
+          <a href="https://www.lifeline.org.au/get-help/support-toolkit/techniques-and-guides/finding-relief-through-grounding-techniques" target="_blank" rel="noopener">Lifeline grounding</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <button data-go="home" class="active"><span>⌂</span>Home</button>
+    <button data-go="cream"><span>◒</span>Cream</button>
+    <button data-go="connection"><span>◇</span>Connection</button>
+    <button data-go="progress"><span>▥</span>Progress</button>
+    <button data-go="settings"><span>⚙</span>Settings</button>
+  </nav>
+
+  <dialog id="stopDialog">
+    <div class="dialog-content">
+      <p class="eyebrow">EVERYTHING STOPS</p>
+      <h2>You do not have to continue.</h2>
+      <p>Put the cream down. Move your hands away from the difficult area. Press both feet into the floor.</p>
+      <div class="anchor-box">
+        <p>My name is <strong data-user-name>Tracey</strong>.</p>
+        <p>Today is <strong data-today></strong>.</p>
+        <p>I am here now. My body belongs to me. Stopping is allowed.</p>
+      </div>
+      <button id="goGroundingFromStop" class="button primary full">Take me through grounding</button>
+      <button id="closeStopDialog" class="button ghost full">I am present enough to close this</button>
+      <a class="button danger full" href="tel:000">Call 000 if I am in immediate danger</a>
+      <a class="button secondary full" href="tel:+61131114">Call Lifeline 13 11 14</a>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
