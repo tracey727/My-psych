@@ -32,16 +32,15 @@ python -m http.server 8080
 
 Then open `http://localhost:8080`.
 
-## Deploy to Vercel
+## Deploy to Cloudflare Pages
 
-1. Create one GitHub repository containing the files in this folder at the repository root.
-2. In Vercel, choose **Add New → Project** and import that repository.
-3. Framework Preset: **Other**.
-4. Root Directory: leave blank.
-5. Build Command: leave blank.
-6. Output Directory: leave blank.
-7. Environment variables: none required.
-8. Deploy.
+1. Keep the application files at the GitHub repository root.
+2. In Cloudflare Pages, connect this GitHub repository.
+3. Framework preset: none / static HTML.
+4. Build command: leave blank.
+5. Output directory: repository root.
+6. No environment variables are required.
+7. Deploy. The root `_headers` file preserves the no-cache and browser security headers previously supplied by the old Vercel configuration.
 
 ## Install on iPhone
 
