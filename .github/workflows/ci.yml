@@ -1,0 +1,18 @@
+name: Safe Connection CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: test -s index.html
+      - run: test -s app-v4.js
+      - run: test -s styles-v4.css
+      - run: test -s manifest.webmanifest
+      - run: test -s _headers
+      - run: test ! -e vercel.json
