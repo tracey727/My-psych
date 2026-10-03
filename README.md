@@ -56,3 +56,7 @@ This is a self-management aid, not emergency care, diagnosis or trauma therapy. 
 - Text is automatically kept as a local draft while it is being typed.
 - After saving, the app opens Progress and shows all written answers under **See everything I wrote**.
 - The service-worker cache version was changed so deployed phones receive the repaired JavaScript.
+
+## Repository cleanup
+
+The active repair-4 runtime uses `app-v4.js`, `styles-v4.css` and `sw-v4.js`. The earlier `app.js`, `styles.css` and `sw.js` files were removed from the active tree as unused pre-repair runtime copies; they remain recoverable from Git history.
